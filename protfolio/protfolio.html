@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Your Name</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0d1117;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #4f8cff;
+            border-radius: 10px;
+        }
+
+        /* Navbar */
+
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, .05);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        nav {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 75px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .circle {
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo h2 {
+            font-size: 22px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: .3s;
+        }
+
+        nav ul li a:hover {
+            color: #4facfe;
+        }
+
+        .menu {
+            display: none;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* Hero */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 10%;
+            gap: 60px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h3 {
+            color: #4facfe;
+            margin-bottom: 10px;
+        }
+
+        .hero-text h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text h2 {
+            font-size: 60px;
+            color: #00f2fe;
+            height: 40px;
+        }
+
+        .hero-text p {
+            margin: 25px 0;
+            line-height: 1.8;
+            color: #c9d1d9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 35px;
+            margin-top: 120px;
+            border-radius: 40px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .4s;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+        }
+
+        .hero-img {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img img {
+            width: 340px;
+            height: 340px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid #4facfe;
+            box-shadow: 0 0 50px #4facfe;
+        }
+
+        /* Sections */
+
+        section {
+            padding: 90px 10%;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 50px;
+            color: #4facfe;
+        }
+
+        /* About */
+
+        .about-card {
+            background: rgba(255, 255, 255, .05);
+            padding: 35px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            line-height: 2;
+        }
+
+        /* Cards */
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, .05);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            transition: .4s;
+            border: 1px solid rgba(255, 255, 255, .1);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px #4facfe55;
+        }
+
+        .card h3 {
+            margin-bottom: 15px;
+            color: #4facfe;
+        }
+
+        .card p {
+            color: #c9d1d9;
+            line-height: 1.7;
+        }
+
+        /* Contact */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            margin: 15px;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            background: #161b22;
+        }
+
+        /* Animation */
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile */
+
+        @media(max-width:900px) {
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .hero-img img {
+                width: 250px;
+                height: 250px;
+            }
+
+            nav ul {
+                position: absolute;
+                top: 75px;
+                left: -100%;
+                background: #161b22;
+                width: 100%;
+                flex-direction: column;
+                padding: 20px;
+                transition: .4s;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .menu {
+                display: block;
+            }
+
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+
+        <nav>
+
+            <div class="logo">
+
+                <div class="circle">GK</div>
+
+                <h2>Gavvala kavya</h2>
+
+            </div>
+
+            <ul id="menuList">
+
+                <li><a href="#home">Home</a></li>
+
+                <li><a href="#about">About</a></li>
+
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+
+                <li><a href="#certifications">Certifications</a></li>
+
+                <li><a href="#profiles">Professional Profiles</a></li>
+
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+            <div class="menu" onclick="toggleMenu()">☰</div>
+
+        </nav>
+
+    </header>
+
+    <!-- Hero -->
+
+    <section class="hero" id="home">
+
+        <div class="hero-text hidden">
+
+            <h3>Hello I'm</h3>
+
+            <h1>Gavvala kavya</h1>
+
+            <h2 id="typing"></h2>
+
+
+
+            <a href="resume\gavvala-kavya.pdf" download="gavvala-kavya.pdf" class="btn">Download Resume</a>
+
+        </div>
+
+        <div class="hero-img hidden">
+
+            <img src="image/pink.jpeg" alt="Profile">
+
+        </div>
+
+    </section>
+
+    <!-- About -->
+
+    <section id="about">
+
+        <h1 class="title">About Me</h1>
+
+        <div class="about-card hidden">
+            <p>
+                Motivated and enthusiastic B.Tech Computer Science (Data Science) student with a strong interest in web
+                development and software development. Skilled in HTML, CSS, JavaScript, Python, SQL, Power BI, and
+                GitHub, with hands-on experience building responsive web applications and academic projects. Passionate
+                about learning new technologies, solving real-world problems, and creating user-friendly digital
+                solutions. A quick learner with strong analytical, communication, and teamwork skills, seeking an
+                internship or entry-level opportunity to apply and expand my technical knowledge.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- Skills -->
+
+    <section id="skills">
+
+        <h1 class="title">Skills</h1>
+
+        <div class="grid">
+
+            <div class="card hidden">
+                <h3>HTML</h3>
+                <p>Semantic and Responsive Websites.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>CSS</h3>
+                <p>Animations, Flexbox, Grid and Responsive Design.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>JavaScript</h3>
+                <p>Interactive Websites and DOM Manipulation.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>Python</h3>
+                <p>Programming Fundamentals.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>React</h3>
+                <p>Modern UI Development.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>Git & GitHub</h3>
+                <p>Version Control.</p>
+            </div>
+
+        </div>
+
+    </section>
+    <section id="projects">
+
+        <h1 class="title">Projects</h1>
+
+        <div class="grid">
+
+            <div class="card hidden">
+                <h3>Portfolio Website</h3>
+                <p>A personal portfolio website showcasing my skills, projects, and experience.</p>
+            </div>
+            <div class="card hidden">
+                <h3>Boran trends for mens</h3>
+                <p>A modern men's E-commerce website for browsing products,managing carts and wishlists,and placing
+                    order.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>Calculator</h3>
+                <p>A simple calculator application with basic arithmetic operations.</p>
+            </div>
+
+            <div class="card hidden">
+                <h3>online attendance system</h3>
+                <p>A web-based application for managing and tracking student attendance in real-time.</p>
+            </div>
+            <div class="card hidden">
+                <h3>chronicles of india:Digital timeline of historical events</h3>
+                <p>A digital timeline showcasing significant historical events in India.</p>
+            </div>
+
+
+        </div>
+    </section>
+    <!-- Certifications -->
+
+    <section id="certifications">
+
+        <h1 class="title">Certifications</h1>
+
+        <div class="grid">
+
+            <div class="card hidden">
+
+                <h3>Infosys</h3>
+
+                <p>Completed of Python Programming Course certification.</p>
+
+            </div>
+            <div class="card hidden">
+
+                <h3>thingQbator</h3>
+
+                <p>Completed of HTML&CSS course certification,Machine learning and image processing Course
+                    certification.</p>
+
+            </div>
+            <div class="card hidden">
+
+                <h3>IBM</h3>
+
+                <p>Completed of web development fundamentals and artificial intelligence fundamentals Course
+                    certifications.</p>
+
+            </div>
+            <div class="card hidden">
+
+                <h3>Code Easy</h3>
+
+                <p>Completed of 5 days live workshop on javascript Course certifications.</p>
+
+            </div>
+            <div class="card hidden">
+
+                <h3>Lets Upgrade</h3>
+
+                <p>Completed of javascript bootcamp and html&css bootcamp Course certifications.</p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <!-- Profiles -->
+
+    <section id="profiles">
+
+        <h1 class="title">Professional Profiles</h1>
+
+        <div class="grid">
+
+            <div class="card hidden">
+
+                <h3>GitHub</h3>
+
+                <a href="https://github.com/gavvalakavya0-ai" target="_blank"
+                    class="profile-btn">https://github.com/gavvalakavya0-ai</a>
+
+            </div>
+
+            <div class="card hidden">
+
+                <h3>LinkedIn</h3>
+
+                <a href="https://www.linkedin.com/in/kavya-gavvala" target="_blank"
+                    class="profile-btn">https://www.linkedin.com/in/kavya-gavvala</a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+
+    <section class="contact" id="contact">
+
+        <h1 class="title">Contact</h1>
+
+        <div class="hidden">
+
+            <p>📧 gavvalakavya0@gmail.com</p>
+
+            <p>📱 +91 6305610060</p>
+
+            <p>📍 Hyderabad,India</p>
+
+            <a href="mailto:gavvalakavya0@gmail.com" class="btn">Send Email</a>
+
+        </div>
+
+    </section>
+
+    <footer>
+
+        © 2026 Gavvala kavya | All Rights Reserved
+
+    </footer>
+
+    <script>
+
+        /* Typing Effect */
+
+        const text = [
+            "web developer"
+        ];
+
+        let i = 0;
+        let j = 0;
+        let current = "";
+        let isDeleting = false;
+
+        function typing() {
+
+            current = text[i];
+
+            document.getElementById("typing").textContent = current.substring(0, j);
+
+            if (!isDeleting) {
+
+                j++;
+
+                if (j == current.length + 1) {
+
+                    isDeleting = true;
+
+                    setTimeout(typing, 1000);
+
+                    return;
+
+                }
+
+            }
+
+            else {
+
+                j--;
+
+                if (j == 0) {
+
+                    isDeleting = false;
+
+                    i++;
+
+                    if (i == text.length) {
+
+                        i = 0;
+
+                    }
+
+                }
+
+            }
+
+            setTimeout(typing, isDeleting ? 70 : 120);
+
+        }
+
+        typing();
+
+        /* Mobile Menu */
+
+        function toggleMenu() {
+
+            document.getElementById("menuList").classList.toggle("active");
+
+        }
+
+        /* Scroll Animation */
+
+        const observer = new IntersectionObserver(entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("show");
+
+                }
+
+            });
+
+        });
+
+        document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+
+    </script>
+
+</body>
+
+</html>
